@@ -1,0 +1,9 @@
+.check {
+    cursor: pointer;
+}
+
+.flexcontent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

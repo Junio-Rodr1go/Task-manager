@@ -1,0 +1,25 @@
+.bar {
+    display: flex;
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+}
+
+.flexcontent {  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchbtn {
+    background-color: white;
+    border: none;
+}
+
+input {
+    width: 40vw;
+    outline: none;
+    border: none;
+    margin: 0 20px 0 0;
+    height: 20px;
+}

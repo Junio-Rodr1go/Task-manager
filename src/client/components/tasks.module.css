@@ -1,0 +1,299 @@
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3e8ff;
+    min-height: 86.3vh;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    background: linear-gradient(160deg, #f9f0ff, #ede0ff);
+    min-height: 79.5vh;
+    width: 90%;
+    padding: 40px;
+    margin: 32px 0 32px 0;
+}
+
+.flexcontent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gridcontent {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+}
+
+.task {
+    cursor: pointer;
+    height: 350px;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in;
+    background-color: #ffffff;
+    border: 1px solid #d8b4fe;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(167, 100, 255, 0.1);
+}
+
+.task p {
+    word-break: break-all;
+    height: 100px;
+    overflow-y: hidden;
+}
+
+.task h1 {
+    overflow: hidden;
+    word-break: keep-all;
+}
+
+.createTask:hover {
+    transform: translateY(-2px);
+}
+
+.createForm {
+    min-width: 300px;
+    color: #5b21b6;
+    background: linear-gradient(135deg, #ffffff, #fae8ff);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    border: 1px solid #e9d5ff;
+    padding: 40px;
+    margin: 0 0 10px 0;
+    box-shadow: 0 4px 16px rgba(167, 100, 255, 0.12);
+}
+
+.createForm h1 {
+    min-width: 185px;
+}
+
+.createForm form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 43vw;
+}
+
+.createForm textarea {
+    border-radius: 10px;
+    outline: none;
+    resize: none;
+    width: 44vw;
+    border: 1px solid #d8b4fe;
+    background-color: #fdf4ff;
+    color: #4c1d95;
+    padding: 10px;
+}
+
+.createForm input {
+    width: 44vw;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fdf4ff;
+    border: 1px solid #d8b4fe;
+    color: #4c1d95;
+}
+
+.createForm button {
+    color: #9333ea;
+    border: none;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    font-weight: bold;
+    align-self: center;
+    cursor: pointer;
+    font-size: 20px;
+    transition: .1s ease-in;
+}
+
+.createForm button:hover {
+    transform: translateY(-1px);
+}
+
+.xbtn {
+    cursor: pointer;
+    transform: rotate(45deg);
+    transition: .2s ease-in;
+}
+
+.rotated {
+    cursor: pointer;
+    transition: .2s ease-in;
+    transform: rotate(0);
+}
+
+.flexCreate {
+    margin: 0 0 30px 0;
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.task:hover {
+    transform: translateY(-5px);
+    border-color: #c084fc;
+    box-shadow: 0 8px 20px rgba(167, 100, 255, 0.18);
+}
+
+.task button {
+    transition: transform .2s ease-in;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-self: end;
+    color: #a855f7;
+}
+
+.task button:hover {
+    color: #ec4899;
+    transform: translateY(-3px);
+}
+
+.task p {
+    display: flex;
+    width: 100%;
+    min-height: 200px;
+    color: #4c1d95;
+}
+
+.flexSubmited {
+    font-size: 30px;
+    color: #a855f7;
+    margin: 0 0 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flexbutton {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.editForm {
+    padding: 100px;
+    background-color: #fff;
+    border: solid 1px #c084fc;
+    display: flex;
+    flex-direction: column;
+}
+
+.editOpened {
+    width: 99.2vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.editForm input {
+    min-width: 300px;
+    width: 30vw;
+    font-size: 15px;
+    border: solid 1px #a855f7;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.flexEdit {
+    gap: 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.flexEdit button {
+    font-size: 25px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.flexEdit textarea{
+    min-width: 200px;
+    padding: 10px;
+    resize: none;
+    outline: none;
+    border: solid 1px #a855f7;
+    border-radius: 10px;
+    height: 300px;
+}
+
+.flexEdit button:hover {
+    color: #9333ea;
+}
+
+.XlgEdit:hover {
+    color: #a855f7;
+    transform: translateY(-3px);
+    cursor: pointer;
+}
+
+.XlgEdit {
+    transition: transform .2s ease-in;
+    align-self: end;
+}
+
+.flexline {
+    display: flex;
+    justify-content: center;
+    font-size: 2vw;
+}
+
+.backgroundline {
+    margin: 100px 0 0 0;
+    background-color: #e9d5ff;
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.line {
+    font-size: 20px;
+    color: #a855f7;
+}
+
+@media (max-width: 1500px) {
+    .gridcontent {
+        grid-template-columns: 1fr 1fr;
+    }
+    .editForm {
+        padding: 20px;
+    }
+}
+@media (max-width: 900px) {
+    .gridcontent {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 425px) {
+    .task{
+        width: 300px;
+    }
+    .gridcontent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
