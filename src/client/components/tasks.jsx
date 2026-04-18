@@ -68,7 +68,7 @@ function Tasks() {
             .then(json => json.json())
             .then(data => setTasks(data))
             .catch(err => console.log('Erro ao consultar a API:', err))
-    }, [tasks])
+    }, [])
 
     return (
         <div className={styles.background} >
