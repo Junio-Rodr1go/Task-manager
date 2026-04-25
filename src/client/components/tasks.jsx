@@ -40,23 +40,30 @@ function Tasks() {
     }
 
     function handleEdit(task) {
-
         fetch('http://localhost:3300/Edit', {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(task)
         })
-            .then(() => setEdit(!Edit))
+            .then(res => res.json())
+            .then(data => {
+                setTasks(tasks.map(t => String(t._id) === String(data._id) ? data : t))
+                setEdit(false)
+            })
     }
 
     function handleDelete(task) {
-        fetch(`http://localhost:3300/delete`, {
+        fetch('http://localhost:3300/delete', {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: task.id, title: task.title, text: task.text })
+            body: JSON.stringify({ id: task._id })
         })
-            .then(() => setDone([...Done, task]))
+            .then(() => {
+                setTasks(tasks.filter(t => String(t._id) !== String(task._id)))
+                setDone([...Done, task])
+            })
     }
+
 
     useEffect(() => {
         setEditedText(EditedTask.text)
@@ -125,7 +132,7 @@ function Tasks() {
                                     <div className={styles.flexbutton}>
                                         <button onClick={e => {
                                             setEdit(!Edit)
-                                            setEditedTask({ id: task.id, title: task.title, text: task.text })
+                                            setEditedTask({ _id: task._id, title: task.title, text: task.text })
                                         }}><PencilSquare size={30} /></button>
                                         <button onClick={() => handleDelete(task)}><Check size={50} /></button>
                                     </div>
@@ -150,7 +157,7 @@ function Tasks() {
                             />
                             <form onSubmit={e => {
                                 e.preventDefault()
-                                if ((EditedTitle !== '' && EditedText !== '')) handleEdit({ id: EditedTask.id, title: EditedTitle, text: EditedText })
+                                if ((EditedTitle !== '' && EditedText !== '')) handleEdit({ id: EditedTask._id, title: EditedTitle, text: EditedText })
                             }}>
                                 <div className={styles.flexEdit}>
                                     <h1>Editar Tarefa</h1>

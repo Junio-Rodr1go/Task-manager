@@ -3,8 +3,7 @@ import express from 'express'
 import fs from 'fs'
 import cors from 'cors'
 import { nanoid } from 'nanoid'
-import tasks from './models/tasks'
-import { error } from 'console'
+import tasks from './models/tasks.js'
 
 
 const app = express()
@@ -15,16 +14,41 @@ app.use(express.static('.'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+//CREATE
+app.post('/create', async (req, res) => {
+    try {
+        const { Title, Text } = req.body
+        const data = await tasks.create({ title: Title, text: Text })
+        res.json(data)
+    }
+    catch {
+        res.status(400).json({ error: 'Não foi possível criar tarefa!' })
+    }
+})
+
+//READ
 app.get('/tasks', async (req, res) => {
     try {
         const data = await tasks.find()
-        res.json(JSON.parse(data))
+        res.json(data)
     }
     catch {
         res.status(400).json({ error: 'Nenhuma tarefa encontrada!' })
     }
 })
 
+//UPDATE
+app.patch('/Edit', async (req, res) => {
+    try {
+        const { id, title, text } = req.body
+        const data = await tasks.findByIdAndUpdate(id, { title: title, text: text }, { new: true })
+        res.json(data)
+    } catch {
+        res.status(400).json({ error: 'Não foi possível editar tarefa!' })
+    }
+})
+
+//DELETE
 app.delete('/delete', async (req, res) => {
     try {
         const { id } = req.body
@@ -33,27 +57,6 @@ app.delete('/delete', async (req, res) => {
     }
     catch (err) {
         res.status(400).json({ error: 'Não foi possível deletar tarefa!' })
-    }
-})
-
-app.patch('/Edit', (req, res) => {
-    try {
-        const { id, title, text } = req.body
-        const data = tasks.findByIdAndUpdate(id, { title, text })
-        res.json(req.body)
-    } catch {
-        res.status(400).json({ error: 'Não foi possível editar tarefa!' })
-    }
-})
-
-app.post('/create', (req, res) => {
-    try {
-        const { Title, Text } = req.body
-        const data = tasks.create({ id: nanoid(), title: Title, text: Text })
-        res.json(data)
-    }
-    catch {
-        res.status(400).json({ error: 'Não foi possível criar tarefa!' })
     }
 })
 
