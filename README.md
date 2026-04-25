@@ -7,6 +7,7 @@ Este projeto foi feito com o intuito de melhorar as minhas habilidades com o bac
 - React.js (Vite)
 - Bootstrap
 - Node.js
+- MongoDB
 - Express
 
 ## Júnio Rodrigo Cardoso de Sousa
