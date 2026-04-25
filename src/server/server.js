@@ -3,6 +3,8 @@ import express from 'express'
 import fs from 'fs'
 import cors from 'cors'
 import { nanoid } from 'nanoid'
+import tasks from './models/tasks'
+import { error } from 'console'
 
 
 const app = express()
@@ -13,47 +15,46 @@ app.use(express.static('.'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-app.get('/tasks', (req, res) => {
-    const data = fs.readFileSync('./db.json', 'utf-8')
-    res.json(JSON.parse(data))
+app.get('/tasks', async (req, res) => {
+    try {
+        const data = await tasks.find()
+        res.json(JSON.parse(data))
+    }
+    catch {
+        res.status(400).json({ error: 'Nenhuma tarefa encontrada!' })
+    }
 })
 
-app.delete('/delete', (req, res) => {
-    const { id } = req.body
-    let data = fs.readFileSync('./db.json', 'utf-8')
-    data = JSON.parse(data)
-    data = data.filter(data => data.id !== id)
-    fs.writeFileSync('./db.json', JSON.stringify(data, null, 4))
-    res.json(req.body)
+app.delete('/delete', async (req, res) => {
+    try {
+        const { id } = req.body
+        const data = await tasks.findByIdAndDelete(id)
+        res.json(req.body)
+    }
+    catch (err) {
+        res.status(400).json({ error: 'Não foi possível deletar tarefa!' })
+    }
 })
 
 app.patch('/Edit', (req, res) => {
-    console.log(req.body)
-    const { id, title, text } = req.body
-    let data = JSON.parse(fs.readFileSync('./db.json', 'utf-8'))
-    data.filter(data => data.id === id).map( data => {
-        data.title = title
-        data.text = text
-    })
-    
-    fs.writeFileSync('./db.json', JSON.stringify(data, null, 4))
-    res.json(req.body)
+    try {
+        const { id, title, text } = req.body
+        const data = tasks.findByIdAndUpdate(id, { title, text })
+        res.json(req.body)
+    } catch {
+        res.status(400).json({ error: 'Não foi possível editar tarefa!' })
+    }
 })
 
 app.post('/create', (req, res) => {
-    const { Title, Text } = req.body
-    const data = JSON.parse(fs.readFileSync('./db.json', 'utf-8'))
-
-    console.log(Title, Text)
-
-    const newTask = {
-        id: nanoid(),
-        title: Title,
-        text: Text
+    try {
+        const { Title, Text } = req.body
+        const data = tasks.create({ id: nanoid(), title: Title, text: Text })
+        res.json(data)
     }
-    data.push(newTask)
-    fs.writeFileSync('./db.json', JSON.stringify(data, null, 4))
-    res.json(newTask)
+    catch {
+        res.status(400).json({ error: 'Não foi possível criar tarefa!' })
+    }
 })
 
 const porta = 3300
