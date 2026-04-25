@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-mongoose.connect('mongodb://localhost:27017/taskmanager').then(() => {
+mongoose.connect('mongodb+srv://Junio:12345@cluster0.fsusl4b.mongodb.net/?appName=Cluster0').then(() => {
     console.log('Banco conectado com sucesso!')
 })
     .catch((err) => {

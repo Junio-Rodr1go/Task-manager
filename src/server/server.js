@@ -4,9 +4,11 @@ import fs from 'fs'
 import cors from 'cors'
 import { nanoid } from 'nanoid'
 import tasks from './models/tasks.js'
+import 'dotenv/config'
 
 
 const app = express()
+mongoose.connect(process.env.MONGO_URI)
 
 app.use(cors())
 
